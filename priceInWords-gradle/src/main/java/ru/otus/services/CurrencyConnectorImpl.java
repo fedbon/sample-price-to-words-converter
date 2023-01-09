@@ -11,13 +11,6 @@ public class CurrencyConnectorImpl implements CurrencyConnector {
     @Override
     public CurrencyConnectionResult CurrencyConnectionResult(PriceNumber priceNumber, Currency currency) {
         int connectionResult = 0;
-        switch (equation.getSign()) {
-            case '+' -> equationResult = (equation.getLeftSide() + equation.getRightSide());
-            case '-' -> equationResult = (equation.getLeftSide() - equation.getRightSide());
-            case '*' -> equationResult = (equation.getLeftSide() * equation.getRightSide());
-            case '/' -> equationResult = (equation.getLeftSide() / equation.getRightSide());
-        }
-        return new CurrencyConnectionResult(priceNumber, connectionResult);
+        return new CurrencyConnectionResult(priceNumber);
     }
-
 }

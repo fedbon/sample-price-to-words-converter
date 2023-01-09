@@ -10,7 +10,13 @@ public enum Currency {
         this.endings = endings;
     }
 
-    public String[] getEnding() {
-        return endings;
+    public String getEnding(int amount) {
+        if(amount == 1) {
+            return endings[0];
+        } else if(amount <=4 && amount >= 2) {
+            return endings[1];
+        } else {
+            return endings[2];
+        }
     }
 }

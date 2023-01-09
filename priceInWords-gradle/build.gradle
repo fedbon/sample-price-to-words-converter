@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow'
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+}
+
+shadowJar {
+    archiveBaseName.set('gradleController')
+    archiveVersion.set('0.1')
+    archiveClassifier.set('')
+    manifest {
+        attributes 'Main-Class': 'ru.otus.Controller'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.build.dependsOn tasks.shadowJar

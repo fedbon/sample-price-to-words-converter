@@ -11,7 +11,7 @@ public class Main {
 //        String[] parameters = userInput.split(" ");
 //        Integer amount = Integer.valueOf(parameters[0]);
 //        String currencyCode = parameters[1];
-//        domain.Currency instance = domain.Currency.valueOf(currencyCode);
+//        Currency instance = Currency.valueOf(currencyCode);
 //        String endingMessage = instance.getEndingMessage(amount);
 
     IOService ioService = new ConsoleIOService();

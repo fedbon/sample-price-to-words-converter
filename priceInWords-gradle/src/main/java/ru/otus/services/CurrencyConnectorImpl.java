@@ -8,9 +8,14 @@ import ru.otus.domain.PriceNumber;
 
 public class CurrencyConnectorImpl implements CurrencyConnector {
 
+//    @Override
+//    public CurrencyConnectionResult CurrencyConnectionResult(PriceNumber priceNumber, Currency currency) {
+//        int connectionResult = 0;
+//        return null;
+//    }
+
     @Override
-    public CurrencyConnectionResult CurrencyConnectionResult(PriceNumber priceNumber, Currency currency) {
-        int connectionResult = 0;
-        return new CurrencyConnectionResult(priceNumber);
+    public CurrencyConnectionResult connectCurrency(PriceNumber priceNumber) {
+        return null;
     }
 }

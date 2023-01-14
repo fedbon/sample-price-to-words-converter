@@ -5,25 +5,17 @@ import ru.otus.services.*;
 
 public class Main {
     public static void main(String[] args) {
-//        System.out.println("Enter amount and currency code: ");
-//        Scanner scanner = new Scanner(System.in);
-//        String userInput = scanner.nextLine();
-//        String[] parameters = userInput.split(" ");
-//        Integer amount = Integer.valueOf(parameters[0]);
-//        String currencyCode = parameters[1];
-//        Currency instance = Currency.valueOf(currencyCode);
-//        String endingMessage = instance.getEndingMessage(amount);
 
     IOService ioService = new ConsoleIOService();
 
     UserService userService = new UserServiceImpl(ioService);
 
-    PriceRequestsHistoryHolder historyHolder = new PriceRequestsHistoryHolderImpl();
+    PriceInWordsRequestsHistoryHolder historyHolder = new PriceInWordsRequestsHistoryHolderImpl();
 
-    PriceNumberParser priceNumberParser = new PriceNumberParserImpl();
-    CurrencyConnector currencyConnector = new CurrencyConnectorImpl();
+    PriceCodeParser priceCodeParser = new PriceCodeParserImpl();
+    PriceInWordsConverter priceInWordsConverter = new PriceInWordsConverterImpl();
 
-    CommandHandler commandHandler = new CommandHandlerImpl(ioService, historyHolder, priceNumberParser, currencyConnector);
+    CommandHandler commandHandler = new CommandHandlerImpl(ioService, historyHolder, priceCodeParser, priceInWordsConverter);
 
     ApplicationRunner applicationRunner = new ApplicationRunner(ioService, userService, commandHandler);
     applicationRunner.run();

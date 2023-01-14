@@ -3,13 +3,12 @@ package ru.otus;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import ru.otus.domain.Currency;
 
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CurrencyTest {
+public class CurrencyEndingsInWordsTest {
     private static Stream<Arguments> provideStringsForIsBlank() {
         return Stream.of(
                 Arguments.of(5, "рублей"),
@@ -22,6 +21,6 @@ public class CurrencyTest {
     @ParameterizedTest
     @MethodSource("provideStringsForIsBlank")
     void testCurrencyEndingsRUB(int input, String expected) {
-        assertEquals(expected, Currency.RUB.getEnding());
+        assertEquals(expected, currencyEnding);
     }
 }

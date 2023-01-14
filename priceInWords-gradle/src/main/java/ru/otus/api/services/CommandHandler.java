@@ -1,6 +1,5 @@
 package ru.otus.api.services;
 
-
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public interface CommandHandler {
@@ -8,7 +7,7 @@ public interface CommandHandler {
     boolean handleExitCommand(String command, String userName,
                               AtomicBoolean executionFlag);
 
-    boolean handleHistoryCommand(String command);
+    boolean handleRequestsHistoryCommand(String command);
 
-    void handlePriceCommand(String priceStr);
+    void handlePriceCodeCommand(String priceCodeStr);
 }

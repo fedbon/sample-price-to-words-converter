@@ -26,19 +26,19 @@ public class ApplicationRunner {
 
         User user = userService.askUserName();
         while (executionFlag.get()) {
-            String commandOrPrice = showPromptAndReadCommand();
+            String commandOrPriceCode = showPromptAndReadCommand();
 
-            if (!commandHandler.handleExitCommand(commandOrPrice, user.getFullName(),
+            if (!commandHandler.handleExitCommand(commandOrPriceCode, user.getFullName(),
                     executionFlag)) {
-                if (!commandHandler.handleHistoryCommand(commandOrPrice)) {
-                    commandHandler.handlePriceCommand(commandOrPrice);
+                if (!commandHandler.handleRequestsHistoryCommand(commandOrPriceCode)) {
+                    commandHandler.handlePriceCodeCommand(commandOrPriceCode);
                 }
             }
         }
     }
 
     private String showPromptAndReadCommand() {
-        ioService.outputStr("Введите число + код валюты/history/exit");
-        return ioService.readString("Число и код валюты должны быть отделены пробелом (Например, 8 RUB или 5 USD)");
+        ioService.outputStr("Введите число не более 999 и код валюты, либо воспользуйтесь командами history/exit");
+        return ioService.readString("Число и код валюты должны быть отделены пробелом (Например, 118 RUB или 54 USD)");
     }
 }

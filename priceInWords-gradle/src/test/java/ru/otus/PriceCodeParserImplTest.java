@@ -8,10 +8,10 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CurrencyEndingsInWordsTest {
+public class PriceCodeParserImplTest {
     private static Stream<Arguments> provideStringsForIsBlank() {
         return Stream.of(
-                Arguments.of(5, "рублей"),
+                Arguments.of("5 RUB", "рублей"),
                 Arguments.of(21, "рубль"),
                 Arguments.of(1, "рубль"),
                 Arguments.of(2, "рубля")
@@ -20,7 +20,7 @@ public class CurrencyEndingsInWordsTest {
 
     @ParameterizedTest
     @MethodSource("provideStringsForIsBlank")
-    void testCurrencyEndingsRUB(int input, String expected) {
-        assertEquals(expected, currencyEnding);
+    void parsePriceCode(String priceCodeString, String expected) {
+        assertEquals(priceCodeString, expected);
     }
 }

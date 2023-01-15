@@ -3,7 +3,7 @@ package ru.otus;
 import ru.otus.api.services.*;
 import ru.otus.services.*;
 
-public class Main {
+public class App {
     public static void main(String[] args) {
 
     IOService ioService = new ConsoleIOService();

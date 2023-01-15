@@ -17,8 +17,12 @@ public class PriceCode {
         return currencyCode;
     }
 
-    public int getPriceNumberLastDigit (int amount) {
-        return amount % 10;
+    public int getPriceNumberLastDigit (int number) {
+        if (number % 100 > 10 && number % 100 < 20) {
+            return 5;
+        } else {
+            return number % 10;
+        }
     }
 
     @Override

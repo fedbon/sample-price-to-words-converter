@@ -17,7 +17,7 @@ public class App {
 
     CommandHandler commandHandler = new CommandHandlerImpl(ioService, historyHolder, priceCodeParser, priceInWordsConverter);
 
-    ApplicationRunner applicationRunner = new ApplicationRunner(ioService, userService, commandHandler);
-    applicationRunner.run();
+    Controller controller = new Controller(ioService, userService, commandHandler);
+    controller.run();
     }
 }

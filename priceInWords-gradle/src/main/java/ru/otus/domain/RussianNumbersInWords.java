@@ -10,16 +10,13 @@ public class RussianNumbersInWords {
             "девяносто"};
     private static final String[] HUNDREDS = {"", "сто", "двести", "триста",
             "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
-    private static String word;
 
-    public RussianNumbersInWords(String word) {
-        RussianNumbersInWords.word = word;
+    private RussianNumbersInWords() {
     }
 
     public static String getNumberInWords(int number) {
-        if (number == 100 || number == 200 || number == 300 || number == 400
-                || number == 500 || number == 600 || number == 700 ||
-                number == 800 || number == 900) {
+        String word;
+        if (number % 100 == 0 && number >= 100 && number < 1000) {
             number /= 100;
             return HUNDREDS[number];
         } else if (number % 100 < 20) {

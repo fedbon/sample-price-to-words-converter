@@ -50,9 +50,11 @@ public class CommandHandlerImpl implements CommandHandler {
     }
 
     public void handlePriceCodeCommand(String priceCodeStr) {
-        PriceCode priceCode = priceCodeParser.parsePriceCode(priceCodeStr);
-        if (priceCode == null) {
-            ioService.outputStr("Неверно введено число и/или код валюты!");
+        PriceCode priceCode;
+        try {
+            priceCode = priceCodeParser.parsePriceCode(priceCodeStr);
+        } catch (IllegalArgumentException e) {
+            ioService.outputException("Неверно введено число и/или код валюты!");
             return;
         }
 

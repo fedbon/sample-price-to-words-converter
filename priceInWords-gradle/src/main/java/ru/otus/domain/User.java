@@ -1,15 +1,6 @@
 package ru.otus.domain;
 
-public class User {
-    private final String fullName;
-
-    public User(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
+public record User(String fullName) {
 
     @Override
     public String toString() {

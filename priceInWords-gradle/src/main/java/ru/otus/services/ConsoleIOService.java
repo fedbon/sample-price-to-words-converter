@@ -6,6 +6,8 @@ import ru.otus.api.services.IOService;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static java.lang.System.err;
+
 public class ConsoleIOService implements IOService {
 
     private final PrintStream out;
@@ -24,6 +26,11 @@ public class ConsoleIOService implements IOService {
     @Override
     public void outputStr(String template, Object ...args) {
         out.printf(template + "%n", args);
+    }
+
+    @Override
+    public void outputException(String s) {
+        err.println(s);
     }
 
     @Override

@@ -4,7 +4,8 @@ public class PriceInWordsConversionResult {
     private final String numberInWords;
     private final String currencyInWords;
 
-    public PriceInWordsConversionResult(String numberInWords, String currencyInWords) {
+    public PriceInWordsConversionResult(String numberInWords,
+                                        String currencyInWords) {
         this.numberInWords = numberInWords;
         this.currencyInWords = currencyInWords;
     }

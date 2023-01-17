@@ -7,15 +7,15 @@ import ru.otus.domain.User;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class ApplicationRunner {
+public class Controller {
 
     private final IOService ioService;
     private final UserService userService;
     private final CommandHandler commandHandler;
 
-    public ApplicationRunner(IOService ioService,
-                             UserService userService,
-                             CommandHandler commandHandler) {
+    public Controller(IOService ioService,
+                      UserService userService,
+                      CommandHandler commandHandler) {
         this.ioService = ioService;
         this.userService = userService;
         this.commandHandler = commandHandler;
@@ -28,7 +28,7 @@ public class ApplicationRunner {
         while (executionFlag.get()) {
             String commandOrPriceCode = showPromptAndReadCommand();
 
-            if (!commandHandler.handleExitCommand(commandOrPriceCode, user.getFullName(),
+            if (!commandHandler.handleExitCommand(commandOrPriceCode, user.fullName(),
                     executionFlag)) {
                 if (!commandHandler.handleRequestsHistoryCommand(commandOrPriceCode)) {
                     commandHandler.handlePriceCodeCommand(commandOrPriceCode);

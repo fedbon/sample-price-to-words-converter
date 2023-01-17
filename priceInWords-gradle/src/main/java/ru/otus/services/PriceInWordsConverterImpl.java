@@ -11,9 +11,9 @@ public class PriceInWordsConverterImpl implements PriceInWordsConverter {
 
     @Override
     public PriceInWordsConversionResult convertPriceCode(PriceCode priceCode) {
-        int number = priceCode.getNumber();
+        int number = priceCode.number();
         int lastDigit = priceCode.getPriceNumberLastDigit(number);
-        String currencyCode = priceCode.getCurrencyCode();
+        String currencyCode = priceCode.currencyCode();
         String numberInWords = getNumberInWords(number);
         CurrencyEndingsInWords instance = CurrencyEndingsInWords.valueOf(currencyCode);
         String currencyEnding = instance.getCurrencyEndingInWords(lastDigit);

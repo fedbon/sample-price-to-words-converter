@@ -16,15 +16,18 @@ public class CommandHandlerImpl implements CommandHandler {
     private final PriceInWordsRequestsHistoryHolder requestsHistoryHolder;
     private final PriceCodeParser priceCodeParser;
     private final PriceInWordsConverter priceInWordsConverter;
+    private final ValidatorService validatorService;
 
     public CommandHandlerImpl(IOService ioService,
                               PriceInWordsRequestsHistoryHolder requestsHistoryHolder,
                               PriceCodeParser priceCodeParser,
-                              PriceInWordsConverter priceInWordsConverter) {
+                              PriceInWordsConverter priceInWordsConverter,
+                              ValidatorService validatorService) {
         this.ioService = ioService;
         this.requestsHistoryHolder = requestsHistoryHolder;
         this.priceCodeParser = priceCodeParser;
         this.priceInWordsConverter = priceInWordsConverter;
+        this.validatorService = validatorService;
     }
 
     public boolean handleExitCommand(String command, String userName,
@@ -52,9 +55,8 @@ public class CommandHandlerImpl implements CommandHandler {
     public void handlePriceCodeCommand(String priceCodeStr) {
         PriceCode priceCode;
         try {
-            priceCode = priceCodeParser.parsePriceCode(priceCodeStr);
+            priceCode = priceCodeParser.parsePriceCode(priceCodeStr, validatorService);
         } catch (IllegalArgumentException e) {
-            ioService.outputException("Неверно введено число и/или код валюты!");
             return;
         }
 

@@ -38,7 +38,7 @@ public class Controller {
     }
 
     private String showPromptAndReadCommand() {
-        ioService.outputStr("Введите число не более 999 и код валюты, либо воспользуйтесь командами history/exit");
+        ioService.outputStr("Введите число и код валюты, либо воспользуйтесь командами history/exit");
         return ioService.readString("Число и код валюты должны быть отделены пробелом (Например, 118 RUB или 54 USD)");
     }
 }

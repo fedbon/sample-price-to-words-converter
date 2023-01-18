@@ -11,11 +11,12 @@ public class App {
     UserService userService = new UserServiceImpl(ioService);
 
     PriceInWordsRequestsHistoryHolder historyHolder = new PriceInWordsRequestsHistoryHolderImpl();
-
+    ValidatorService validatorService = new ValidatorServiceImpl(ioService);
     PriceCodeParser priceCodeParser = new PriceCodeParserImpl();
     PriceInWordsConverter priceInWordsConverter = new PriceInWordsConverterImpl();
 
-    CommandHandler commandHandler = new CommandHandlerImpl(ioService, historyHolder, priceCodeParser, priceInWordsConverter);
+    CommandHandler commandHandler = new CommandHandlerImpl(ioService, historyHolder,
+            priceCodeParser, priceInWordsConverter, validatorService);
 
     Controller controller = new Controller(ioService, userService, commandHandler);
     controller.run();

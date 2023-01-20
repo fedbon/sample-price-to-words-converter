@@ -4,6 +4,8 @@ import ru.otus.api.services.*;
 import ru.otus.domain.PriceInWordsConversionResult;
 import ru.otus.domain.PriceCode;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
@@ -16,18 +18,15 @@ public class CommandHandlerImpl implements CommandHandler {
     private final PriceInWordsRequestsHistoryHolder requestsHistoryHolder;
     private final PriceCodeParser priceCodeParser;
     private final PriceInWordsConverter priceInWordsConverter;
-    private final ValidatorService validatorService;
 
     public CommandHandlerImpl(IOService ioService,
                               PriceInWordsRequestsHistoryHolder requestsHistoryHolder,
                               PriceCodeParser priceCodeParser,
-                              PriceInWordsConverter priceInWordsConverter,
-                              ValidatorService validatorService) {
+                              PriceInWordsConverter priceInWordsConverter) {
         this.ioService = ioService;
         this.requestsHistoryHolder = requestsHistoryHolder;
         this.priceCodeParser = priceCodeParser;
         this.priceInWordsConverter = priceInWordsConverter;
-        this.validatorService = validatorService;
     }
 
     public boolean handleExitCommand(String command, String userName,
@@ -54,14 +53,17 @@ public class CommandHandlerImpl implements CommandHandler {
 
     public void handlePriceCodeCommand(String priceCodeStr) {
         PriceCode priceCode;
+        List<Validator> validators = Arrays.asList(new MaxValueValidator(),
+                new NegativeValueValidator(), new CurrencyCodeValidator());
         try {
-            priceCode = priceCodeParser.parsePriceCode(priceCodeStr, validatorService);
+            priceCode = priceCodeParser.parsePriceCode(priceCodeStr, validators);
         } catch (IllegalArgumentException e) {
+            ioService.outputException(e.getMessage());
             return;
         }
 
-        PriceInWordsConversionResult connectedCurrencyEnding = priceInWordsConverter.convertPriceCode(priceCode);
-        ioService.outputStr("Вывод цены с валютой прописью: %s%n", connectedCurrencyEnding);
-        requestsHistoryHolder.addPriceInWordsConversionResult(connectedCurrencyEnding);
+        PriceInWordsConversionResult convertedPriceCode = priceInWordsConverter.convertPriceCode(priceCode);
+        ioService.outputStr("Вывод цены с валютой прописью: %s%n", convertedPriceCode);
+        requestsHistoryHolder.addPriceInWordsConversionResult(convertedPriceCode);
     }
 }

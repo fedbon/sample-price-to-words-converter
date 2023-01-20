@@ -1,24 +1,30 @@
 package ru.otus.services;
 
 import ru.otus.api.services.PriceCodeParser;
-import ru.otus.api.services.ValidatorService;
+import ru.otus.api.services.Validator;
 import ru.otus.domain.PriceCode;
+
+import java.util.List;
 
 public class PriceCodeParserImpl implements PriceCodeParser {
 
     @Override
-    public PriceCode parsePriceCode(String priceCodeString,
-                                    ValidatorService validatorService) {
+    public PriceCode parsePriceCode(String priceCodeString, List<Validator> validators) {
 
         String[] arr = priceCodeString.split(" ");
-        validatorService.isValidFormat(arr);
+
+        if (arr.length != 2) {
+            throw new IllegalArgumentException("Неверный формат ввода!");
+        }
 
         int number = Integer.parseInt(arr[0]);
-        validatorService.isValidNumber(number);
+        String currencyCode = arr[1];
 
-        String currencyCode = String.valueOf(arr[1]);
-        validatorService.isValidCurrencyCode(currencyCode);
-
+        for (Validator validator: validators) {
+            if (!validator.validate(number) || !validator.validate(currencyCode)) {
+                throw new IllegalArgumentException(validator.errorMessage());
+            }
+        }
         return new PriceCode(number, currencyCode);
     }
 }

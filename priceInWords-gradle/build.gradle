@@ -16,11 +16,11 @@ dependencies {
 }
 
 shadowJar {
-    archiveBaseName.set('gradleController')
-    archiveVersion.set('0.1')
+    archiveBaseName.set('gradlePriceInWordsApp')
+    archiveVersion.set('1.0')
     archiveClassifier.set('')
     manifest {
-        attributes 'Main-Class': 'ru.otus.Controller'
+        attributes 'Main-Class': 'ru.otus.App'
     }
 }
 

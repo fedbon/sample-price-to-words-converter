@@ -15,6 +15,7 @@ public class CurrencyCodeValidator implements Validator {
     }
     @Override
     public String errorMessage() {
-        return "Код валюты должен быть введен в формате RUB или USD!";
+        return "Код валюты должен быть введен в формате RUB или USD!" +
+                "%n";
     }
 }

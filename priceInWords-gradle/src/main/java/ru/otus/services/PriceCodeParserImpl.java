@@ -11,14 +11,20 @@ public class PriceCodeParserImpl implements PriceCodeParser {
     @Override
     public PriceCode parsePriceCode(String priceCodeString, List<Validator> validators) {
 
-        String[] arr = priceCodeString.split(" ");
+        String[] priceCodeArray = priceCodeString.split(" ");
 
-        if (arr.length != 2) {
-            throw new IllegalArgumentException("Неверный формат ввода!");
+        if (priceCodeArray.length != 2) {
+            throw new IllegalArgumentException("Некорректный формат ввода!");
         }
 
-        int number = Integer.parseInt(arr[0]);
-        String currencyCode = arr[1];
+        for (Validator validator: validators) {
+            if (!validator.validate(priceCodeArray)) {
+                throw new IllegalArgumentException(validator.errorMessage());
+            }
+        }
+
+        int number = Integer.parseInt(priceCodeArray[0]);
+        String currencyCode = priceCodeArray[1];
 
         for (Validator validator: validators) {
             if (!validator.validate(number) || !validator.validate(currencyCode)) {

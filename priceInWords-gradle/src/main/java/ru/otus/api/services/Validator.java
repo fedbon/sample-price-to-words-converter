@@ -7,6 +7,9 @@ public interface Validator {
     default boolean validate (int value){
         return true;
     }
+    default boolean validate (String[] array){
+        return true;
+    }
     String errorMessage();
 }
 

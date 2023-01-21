@@ -1,6 +1,7 @@
 package ru.otus.services;
 
 import ru.otus.api.services.Validator;
+
 public class NegativeValueValidator implements Validator {
     @Override
     public boolean validate(int value) {

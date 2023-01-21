@@ -54,7 +54,8 @@ public class CommandHandlerImpl implements CommandHandler {
     public void handlePriceCodeCommand(String priceCodeStr) {
         PriceCode priceCode;
         List<Validator> validators = Arrays.asList(new MaxValueValidator(),
-                new NegativeValueValidator(), new CurrencyCodeValidator());
+                new NegativeValueValidator(), new CurrencyCodeValidator(),
+                new StringToNumberValidator());
         try {
             priceCode = priceCodeParser.parsePriceCode(priceCodeStr, validators);
         } catch (IllegalArgumentException e) {

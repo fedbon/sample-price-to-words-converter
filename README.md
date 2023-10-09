@@ -1,2 +1,2 @@
-# otus_java_basic_diploma_project
+# simple-price-to-words-converter
 ДИПЛОМНАЯ РАБОТА БОНДАРЕВА ФЕДОРА

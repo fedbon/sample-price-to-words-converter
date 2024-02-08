@@ -1,2 +1,1 @@
-# simple-price-to-words-converter
-ДИПЛОМНАЯ РАБОТА БОНДАРЕВА ФЕДОРА
+# sample-price-to-words-converter
